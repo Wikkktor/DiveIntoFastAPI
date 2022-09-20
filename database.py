@@ -1,9 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
+from passwords import database
 
-SQLALCHEMY_DATABASE_URL = "postgresql://postgres:coderslab@localhost/todo_demo"
-
+SQLALCHEMY_DATABASE_URL = database
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL
 )

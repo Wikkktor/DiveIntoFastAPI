@@ -7,3 +7,6 @@ __pycache__/
 .idea/
 /.idea
 ./.idea/
+alembic.ini
+passwords.py
+/passwords
