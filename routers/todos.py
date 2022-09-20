@@ -1,12 +1,16 @@
 import sys
 sys.path.append("..")
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 import models
 from database import engine, get_db
 from sqlalchemy.orm import Session
 import schema
 from .auth import get_current_user, get_user_exception
+
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
+
 
 router = APIRouter(
     prefix="/todos",
@@ -15,6 +19,13 @@ router = APIRouter(
 )
 
 models.Base.metadata.create_all(bind=engine)
+
+templates = Jinja2Templates(directory="templates")
+
+
+@router.get("/test")
+async def test(request: Request):
+    return templates.TemplateResponse("home.html", {"request": request})
 
 
 @router.get("/")
